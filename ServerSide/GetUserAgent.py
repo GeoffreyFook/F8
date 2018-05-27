@@ -2,9 +2,10 @@ import webapp2
 import os
 
 
-class MainPage(webapp2.RedirectHandler):
+class MainPage(webapp2.RequestHandler):
     def get(self):
-        self.response.write("Hello World")
+        self.response.headers['Content-Type'] = 'text/plain'
+        self.response.out.write(os.environ["HTTP_USER_AGENT"])
 
 
 print(os.environ["HTTP_USER_AGENT"])
